@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard - LifeSaver</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span style="font-size: 1.5rem;">🏥</span>
+                <span>LifeSaver Patient Portal</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="patient-dashboard.html" class="active">My Requests</a></li>
+                    <li><a href="request.html">New Request</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <span style="color: var(--text-secondary); margin-right: 1rem;">Hello, <strong
+                        id="userName">Patient</strong></span>
+                <button class="btn btn-outline" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h1 style="margin-bottom: 0.5rem;">Patient Dashboard</h1>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">Track your blood requests and medical
+                    needs</p>
+
+                <!-- Stats -->
+                <div class="grid grid-4" style="margin-bottom: 2rem;">
+                    <div class="card stat-card">
+                        <div class="stat-label">Active Requests</div>
+                        <div class="stat-number" id="activeRequests">0</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-label">Fulfilled Requests</div>
+                        <div class="stat-number" id="fulfilledRequests">0</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-label">Blood Type</div>
+                        <div class="stat-number" style="font-size: 2rem;" id="bloodType">A+</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-label">Assigned Doctor</div>
+                        <div class="stat-number" style="font-size: 1.2rem;" id="assignedDoctor">Dr. Smith</div>
+                    </div>
+                </div>
+
+                <!-- Active Requests -->
+                <h2 class="mb-2">Active Requests</h2>
+                <div class="grid grid-2 mb-3">
+                    <div class="card" style="border: 2px solid rgba(227, 24, 55, 0.3);">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                            <h3>Blood Request #1247</h3>
+                            <span class="badge badge-warning">Pending Approval</span>
+                        </div>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Requested:</strong> Dec
+                            1, 2024</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Blood Type:</strong> A+
+                        </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Units Needed:</strong> 2
+                            units</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Purpose:</strong>
+                            Scheduled Surgery</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;"><strong>Approved By:</strong>
+                            Awaiting Dr. Smith</p>
+                        <div
+                            style="padding: 1rem; background: rgba(255, 193, 7, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(255, 193, 7, 0.3);">
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">⏳ Your request is
+                                under review by the medical team.</p>
+                        </div>
+                    </div>
+
+                    <div class="card" style="border: 2px solid rgba(34, 197, 94, 0.3);">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                            <h3>Blood Request #1198</h3>
+                            <span class="badge badge-success">Approved</span>
+                        </div>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Requested:</strong> Nov
+                            28, 2024</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Blood Type:</strong> A+
+                        </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Units Needed:</strong> 1
+                            unit</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Purpose:</strong> Blood
+                            Transfusion</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;"><strong>Approved By:</strong> Dr.
+                            Smith</p>
+                        <div
+                            style="padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(34, 197, 94, 0.3);">
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">✅ Blood is ready.
+                                Please contact Main Blood Bank to schedule pickup.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Request History -->
+                <h2 class="mb-2">Request History</h2>
+                <div class="card">
+                    <table style="width: 100%; color: var(--text-primary);">
+                        <thead>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                <th style="padding: 1rem; text-align: left;">Request ID</th>
+                                <th style="padding: 1rem; text-align: left;">Date</th>
+                                <th style="padding: 1rem; text-align: left;">Blood Type</th>
+                                <th style="padding: 1rem; text-align: left;">Units</th>
+                                <th style="padding: 1rem; text-align: left;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 1rem;">#1198</td>
+                                <td style="padding: 1rem;">Nov 28, 2024</td>
+                                <td style="padding: 1rem;">A+</td>
+                                <td style="padding: 1rem;">1</td>
+                                <td style="padding: 1rem;"><span class="badge badge-success">Approved</span></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 1rem;">#1087</td>
+                                <td style="padding: 1rem;">Oct 15, 2024</td>
+                                <td style="padding: 1rem;">A+</td>
+                                <td style="padding: 1rem;">2</td>
+                                <td style="padding: 1rem;"><span class="badge badge-success">Fulfilled</span></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 1rem;">#0945</td>
+                                <td style="padding: 1rem;">Aug 3, 2024</td>
+                                <td style="padding: 1rem;">A+</td>
+                                <td style="padding: 1rem;">1</td>
+                                <td style="padding: 1rem;"><span class="badge badge-success">Fulfilled</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Quick Actions -->
+                <h2 class="mb-2 mt-3">Quick Actions</h2>
+                <div class="grid grid-3">
+                    <a href="request.html" class="card"
+                        style="text-decoration: none; cursor: pointer; transition: transform 0.3s;">
+                        <h3 style="margin-bottom: 1rem;">📝 Submit New Request</h3>
+                        <p style="color: var(--text-secondary);">Request blood or platelets for medical treatment</p>
+                    </a>
+                    <div class="card" style="cursor: pointer; transition: transform 0.3s;">
+                        <h3 style="margin-bottom: 1rem;">📞 Contact Doctor</h3>
+                        <p style="color: var(--text-secondary);">Get in touch with your assigned physician</p>
+                    </div>
+                    <div class="card" style="cursor: pointer; transition: transform 0.3s;">
+                        <h3 style="margin-bottom: 1rem;">📄 Medical Records</h3>
+                        <p style="color: var(--text-secondary);">View and download your medical documents</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser || currentUser.role !== 'patient') {
+            window.location.href = 'index.html';
+        }
+
+        document.getElementById('userName').textContent = currentUser.first_name;
+
+        function loadPatientStats() {
+            document.getElementById('activeRequests').textContent = '2';
+            document.getElementById('fulfilledRequests').textContent = '5';
+            document.getElementById('bloodType').textContent = 'A+';
+            document.getElementById('assignedDoctor').textContent = 'Dr. Smith';
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        });
+
+        loadPatientStats();
+    </script>
+</body>
+
+</html>

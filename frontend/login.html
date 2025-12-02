@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - LifeSaver Blood & Organ Donation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .login-container {
+            max-width: 450px;
+            margin: 4rem auto;
+            padding: 2.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: var(--shadow-glow);
+        }
+
+        #loginContent,
+        #registerContent {
+            display: none;
+        }
+
+        #loginContent.active,
+        #registerContent.active {
+            display: block;
+        }
+
+        .message {
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #FCA5A5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .message.success {
+            background: rgba(34, 197, 94, 0.2);
+            color: #86EFAC;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <div class="logo-icon">LS</div>
+            <span>LifeSaver</span>
+        </div>
+
+        <div class="text-center mb-4">
+            <h2 style="margin: 0 0 0.5rem 0;">Welcome Back</h2>
+            <p style="color: var(--text-secondary); margin: 0;">Sign in to continue saving lives</p>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="login">Login</div>
+            <div class="tab" data-tab="register">Register</div>
+        </div>
+
+        <div id="errorMessage" class="message error"></div>
+        <div id="successMessage" class="message success"></div>
+
+        <div id="loginContent" class="active">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="your.email@example.com"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+
+                <div
+                    style="margin-top: 1.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.03); border-radius: var(--radius-md);">
+                    <p
+                        style="color: var(--text-secondary); font-size: 0.85rem; margin: 0 0 0.5rem 0; font-weight: 600;">
+                        🎮 Demo Accounts</p>
+                    <p style="color: var(--text-secondary); font-size: 0.8rem; margin: 0.25rem 0;">
+                        <strong>Admin:</strong> admin@bloodbank.com / password123
+                    </p>
+                    <p style="color: var(--text-secondary); font-size: 0.8rem; margin: 0.25rem 0;">
+                        <strong>Doctor:</strong> dr.smith@hospital.com / password123
+                    </p>
+                    <p style="color: var(--text-secondary); font-size: 0.8rem; margin: 0.25rem 0;">
+                        <strong>Donor:</strong> donor1@email.com / password123
+                    </p>
+                    <p style="color: var(--text-secondary); font-size: 0.8rem; margin: 0.25rem 0;">
+                        <strong>Patient:</strong> patient1@email.com / password123
+                    </p>
+                </div>
+            </form>
+        </div>
+
+        <div id="registerContent">
+            <form id="registerForm">
+                <div class="grid grid-2">
+                    <div class="form-group">
+                        <label for="regFirstName">First Name</label>
+                        <input type="text" id="regFirstName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regLastName">Last Name</label>
+                        <input type="text" id="regLastName" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="regEmail">Email Address</label>
+                    <input type="email" id="regEmail" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="regPhone">Phone Number</label>
+                    <input type="tel" id="regPhone" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="regPassword">Password</label>
+                    <input type="password" id="regPassword" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="regConfirmPassword">Confirm Password</label>
+                    <input type="password" id="regConfirmPassword" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api';
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+            document.getElementById('loginContent').classList.toggle('active', tabId === 'login');
+            document.getElementById('registerContent').classList.toggle('active', tabId === 'register');
+        }
+
+        document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => switchTab(tab.dataset.tab)));
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tab = urlParams.get('tab');
+            if (tab === 'register') switchTab('register');
+        });
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+            setTimeout(() => errorDiv.style.display = 'none', 5000);
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
+            setTimeout(() => successDiv.style.display = 'none', 5000);
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            const demoAccounts = {
+                'admin@bloodbank.com': { id: 1, first_name: 'Admin', last_name: 'User', role: 'admin' },
+                'dr.smith@hospital.com': { id: 2, first_name: 'Dr. John', last_name: 'Smith', role: 'doctor' },
+                'donor1@email.com': { id: 3, first_name: 'John', last_name: 'Donor', role: 'donor' },
+                'patient1@email.com': { id: 4, first_name: 'Jane', last_name: 'Patient', role: 'patient' }
+            };
+
+            if (demoAccounts[email] && password === 'password123') {
+                const demoUser = { ...demoAccounts[email], email };
+                localStorage.setItem('authToken', 'demo-token');
+                localStorage.setItem('currentUser', JSON.stringify(demoUser));
+                showSuccess('Login successful! Redirecting...');
+
+                setTimeout(() => {
+                    switch (demoUser.role) {
+                        case 'admin': window.location.href = 'admin-dashboard.html'; break;
+                        case 'doctor': window.location.href = 'doctor-dashboard.html'; break;
+                        case 'donor': window.location.href = 'donor-dashboard.html'; break;
+                        case 'patient': window.location.href = 'patient-dashboard.html'; break;
+                        default: window.location.href = 'index.html';
+                    }
+                }, 1000);
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    localStorage.setItem('authToken', data.token);
+                    localStorage.setItem('currentUser', JSON.stringify(data.user));
+                    showSuccess('Login successful! Redirecting...');
+                    setTimeout(() => window.location.href = 'index.html', 1000);
+                } else {
+                    showError(data.error || 'Login failed');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showError('Connection failed. Using demo login if credentials match.');
+            }
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+
+            if (password !== confirmPassword) {
+                showError('Passwords do not match');
+                return;
+            }
+
+            const userData = {
+                firstName: document.getElementById('regFirstName').value,
+                lastName: document.getElementById('regLastName').value,
+                email: document.getElementById('regEmail').value,
+                phone: document.getElementById('regPhone').value,
+                password: password,
+                role: 'donor'
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/auth/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(userData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showSuccess('Registration successful! Please login.');
+                    setTimeout(() => switchTab('login'), 2000);
+                } else {
+                    showError(data.error || 'Registration failed');
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                showError('Connection failed. Please try again later.');
+            }
+        });
+    </script>
+</body>
+
+</html>

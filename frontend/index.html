@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Blood & Organ Donation Management System - Save lives by donating blood and organs">
+    <meta name="keywords" content="blood donation, organ donation, healthcare, save lives, transplant">
+    <title>Blood & Organ Donation Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon"
+                        style="display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid var(--primary-red); border-radius: 50%; width: 40px; height: 40px; font-size: 1.2rem;">
+                        LS</div>
+                    <span>LifeSaver</span>
+                </div>
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="index.html" class="active"
+                                onclick="window.location.href='index.html'; return false;">Home</a></li>
+                        <li><a href="donate.html" onclick="window.location.href='donate.html'; return false;">Donate</a>
+                        </li>
+                        <li><a href="request.html"
+                                onclick="window.location.href='request.html'; return false;">Request</a></li>
+                        <li><a href="campaigns.html"
+                                onclick="window.location.href='campaigns.html'; return false;">Campaigns</a></li>
+                        <li><a href="dashboard.html"
+                                onclick="window.location.href='dashboard.html'; return false;">Dashboard</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <button class="btn btn-outline" id="loginBtn"
+                        onclick="window.location.href='login.html'">Login</button>
+                    <button class="btn btn-primary" id="registerBtn"
+                        onclick="window.location.href='login.html?tab=register'">Register</button>
+                    <button class="btn btn-secondary hidden" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content" style="text-align: center; padding: 4rem 0;">
+                    <h1>Give the Gift of Life</h1>
+                    <p class="lead" style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-secondary);">
+                        Your
+                        donation can save up to 3 lives. Join our community of donors and make a
+                        difference today.</p>
+                    <div class="hero-buttons"
+                        style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 4rem;">
+                        <button class="btn btn-primary" id="heroDonateBtn"
+                            style="padding: 1rem 2rem; font-size: 1.1rem;">Become a Donor</button>
+                        <button class="btn btn-outline" id="heroRequestBtn"
+                            style="padding: 1rem 2rem; font-size: 1.1rem;">Request Help</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-4" id="statsGrid">
+                    <div class="card stat-card">
+                        <div class="stat-number pulse" id="activeDonors">0</div>
+                        <div class="stat-label">Active Donors</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-number pulse" id="bloodUnits">0</div>
+                        <div class="stat-label">Blood Units Available</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-number pulse" id="availableOrgans">0</div>
+                        <div class="stat-label">Organs Available</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-number pulse" id="livesSaved">1000+</div>
+                        <div class="stat-label">Lives Saved</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blood Inventory Section -->
+        <section id="inventory" class="section">
+            <div class="container">
+                <h2 class="mb-3">Blood Inventory</h2>
+                <div class="grid grid-3" id="bloodInventoryGrid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer style="padding: 2rem 0; text-align: center; margin-top: 4rem; background: var(--bg-card);">
+        <div class="container">
+            <p style="color: var(--text-secondary);">
+                &copy; 2024 Blood & Organ Donation Management System. Saving lives together.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+
+</html>

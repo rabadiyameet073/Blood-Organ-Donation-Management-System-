@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request - Blood & Organ Donation Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon"
+                        style="display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid var(--primary-red); border-radius: 50%; width: 40px; height: 40px; font-size: 1.2rem;">
+                        LS</div>
+                    <span>LifeSaver</span>
+                </div>
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="index.html" onclick="window.location.href='index.html'; return false;">Home</a>
+                        </li>
+                        <li><a href="donate.html" onclick="window.location.href='donate.html'; return false;">Donate</a>
+                        </li>
+                        <li><a href="request.html" class="active"
+                                onclick="window.location.href='request.html'; return false;">Request</a></li>
+                        <li><a href="campaigns.html"
+                                onclick="window.location.href='campaigns.html'; return false;">Campaigns</a></li>
+                        <li><a href="dashboard.html"
+                                onclick="window.location.href='dashboard.html'; return false;">Dashboard</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <button class="btn btn-outline" id="loginBtn"
+                        onclick="window.location.href='login.html'">Login</button>
+                    <button class="btn btn-primary" id="registerBtn"
+                        onclick="window.location.href='login.html?tab=register'">Register</button>
+                    <button class="btn btn-secondary hidden" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container" style="max-width: 900px;">
+                <!-- Form Header -->
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <h1
+                        style="font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(135deg, var(--primary-red), var(--secondary-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                        🆘 Request Blood or Organ
+                    </h1>
+                    <p style="color: var(--text-secondary); font-size: 1.1rem;">Submit your urgent medical request</p>
+                </div>
+
+                <!-- Form Card -->
+                <div class="card" style="padding: 2.5rem;">
+                    <form id="requestForm">
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <label for="reqPatientName">Patient Name</label>
+                                <input type="text" id="reqPatientName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reqHospital">Hospital Name</label>
+                                <input type="text" id="reqHospital" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <label for="reqContactName">Contact Person</label>
+                                <input type="text" id="reqContactName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reqPhone">Contact Phone</label>
+                                <input type="tel" id="reqPhone" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <label for="reqType">Request Type</label>
+                                <select id="reqType" class="form-control" required>
+                                    <option value="">Select Type</option>
+                                    <option value="blood">Blood</option>
+                                    <option value="organ">Organ</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="reqBloodType">Blood Type</label>
+                                <select id="reqBloodType" class="form-control" required>
+                                    <option value="">Select Blood Type</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <label for="reqUrgency">Urgency Level</label>
+                                <select id="reqUrgency" class="form-control" required>
+                                    <option value="">Select Urgency</option>
+                                    <option value="critical">Critical (Within 24 hours)</option>
+                                    <option value="urgent">Urgent (Within 1 week)</option>
+                                    <option value="normal">Normal</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="reqQuantity">Quantity/Units</label>
+                                <input type="number" id="reqQuantity" class="form-control" min="1" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reqMedicalReason">Medical Reason</label>
+                            <textarea id="reqMedicalReason" class="form-control" rows="4"
+                                placeholder="Please describe the medical reason for this request..."
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                            🆘 Submit Request
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Info Cards -->
+                <div class="grid grid-3" style="margin-top: 3rem;">
+                    <div class="card" style="text-align: center; padding: 1.5rem;">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚡</div>
+                        <h4 style="margin-bottom: 0.5rem;">Fast Response</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">We process urgent requests within
+                            hours</p>
+                    </div>
+                    <div class="card" style="text-align: center; padding: 1.5rem;">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔒</div>
+                        <h4 style="margin-bottom: 0.5rem;">Confidential</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Your medical information is
+                            protected</p>
+                    </div>
+                    <div class="card" style="text-align: center; padding: 1.5rem;">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📞</div>
+                        <h4 style="margin-bottom: 0.5rem;">24/7 Support</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Round-the-clock assistance available
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer style="padding: 2rem 0; text-align: center; margin-top: 4rem; background: var(--bg-card);">
+        <div class="container">
+            <p style="color: var(--text-secondary);">
+                &copy; 2024 Blood & Organ Donation Management System. Saving lives together.
+            </p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

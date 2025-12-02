@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaigns - Blood & Organ Donation Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon"
+                        style="display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid var(--primary-red); border-radius: 50%; width: 40px; height: 40px; font-size: 1.2rem;">
+                        LS</div>
+                    <span>LifeSaver</span>
+                </div>
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="index.html" onclick="window.location.href='index.html'; return false;">Home</a>
+                        </li>
+                        <li><a href="donate.html" onclick="window.location.href='donate.html'; return false;">Donate</a>
+                        </li>
+                        <li><a href="request.html"
+                                onclick="window.location.href='request.html'; return false;">Request</a></li>
+                        <li><a href="campaigns.html" class="active"
+                                onclick="window.location.href='campaigns.html'; return false;">Campaigns</a></li>
+                        <li><a href="dashboard.html"
+                                onclick="window.location.href='dashboard.html'; return false;">Dashboard</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <button class="btn btn-outline" id="loginBtn"
+                        onclick="window.location.href='login.html'">Login</button>
+                    <button class="btn btn-primary" id="registerBtn"
+                        onclick="window.location.href='login.html?tab=register'">Register</button>
+                    <button class="btn btn-secondary hidden" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h2 class="mb-3">Active Donation Campaigns</h2>
+                <div class="grid grid-2" id="campaignsGrid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer style="padding: 2rem 0; text-align: center; margin-top: 4rem; background: var(--bg-card);">
+        <div class="container">
+            <p style="color: var(--text-secondary);">
+                &copy; 2024 Blood & Organ Donation Management System. Saving lives together.
+            </p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

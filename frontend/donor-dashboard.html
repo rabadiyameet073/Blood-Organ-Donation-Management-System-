@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Dashboard - LifeSaver</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span style="font-size: 1.5rem;">❤️</span>
+                <span>LifeSaver Donor Portal</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="donor-dashboard.html" class="active">My Donations</a></li>
+                    <li><a href="campaigns.html">Campaigns</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <span style="color: var(--text-secondary); margin-right: 1rem;">Hello, <strong
+                        id="userName">Donor</strong></span>
+                <button class="btn btn-outline" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h1 style="margin-bottom: 0.5rem;">Donor Dashboard</h1>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">Track your donations and save lives</p>
+
+                <!-- Stats -->
+                <div class="grid grid-4" style="margin-bottom: 2rem;">
+                    <div class="card stat-card">
+                        <div class="stat-label">Total Donations</div>
+                        <div class="stat-number" id="totalDonations">0</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-label">Lives Saved</div>
+                        <div class="stat-number" id="livesSaved">0</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-label">Blood Type</div>
+                        <div class="stat-number" style="font-size: 2rem;" id="bloodType">O+</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-label">Next Eligible</div>
+                        <div class="stat-number" style="font-size: 1.5rem;" id="nextEligible">--</div>
+                    </div>
+                </div>
+
+                <!-- Eligibility Status -->
+                <div class="card mb-3"
+                    style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(14, 165, 233, 0.1)); border: 2px solid rgba(34, 197, 94, 0.3);">
+                    <h2 style="margin-bottom: 1rem;">✅ You are eligible to donate!</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Your last donation was 90 days ago.
+                        You can donate again now.</p>
+                    <button class="btn btn-primary">Schedule Donation Appointment</button>
+                </div>
+
+                <!-- Donation History -->
+                <h2 class="mb-2">Donation History</h2>
+                <div class="grid grid-2 mb-3">
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                            <h3>Blood Donation</h3>
+                            <span class="badge badge-success">Completed</span>
+                        </div>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Date:</strong> Sep 2,
+                            2024</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Type:</strong> Whole
+                            Blood</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Quantity:</strong> 450ml
+                        </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Location:</strong> Main
+                            Blood Bank</p>
+                        <p style="color: var(--text-secondary);"><strong>Status:</strong> Successfully processed ✓</p>
+                    </div>
+
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                            <h3>Platelet Donation</h3>
+                            <span class="badge badge-success">Completed</span>
+                        </div>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Date:</strong> Jun 15,
+                            2024</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Type:</strong> Platelets
+                        </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Quantity:</strong> 300ml
+                        </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Location:</strong> City
+                            Hospital</p>
+                        <p style="color: var(--text-secondary);"><strong>Status:</strong> Successfully processed ✓</p>
+                    </div>
+
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                            <h3>Blood Donation</h3>
+                            <span class="badge badge-success">Completed</span>
+                        </div>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Date:</strong> Mar 10,
+                            2024</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Type:</strong> Whole
+                            Blood</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Quantity:</strong> 450ml
+                        </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Location:</strong>
+                            Community Center</p>
+                        <p style="color: var(--text-secondary);"><strong>Status:</strong> Successfully processed ✓</p>
+                    </div>
+
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                            <h3>Blood Donation</h3>
+                            <span class="badge badge-success">Completed</span>
+                        </div>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Date:</strong> Dec 20,
+                            2023</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Type:</strong> Whole
+                            Blood</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Quantity:</strong> 450ml
+                        </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Location:</strong>
+                            Winter Blood Drive</p>
+                        <p style="color: var(--text-secondary);"><strong>Status:</strong> Successfully processed ✓</p>
+                    </div>
+                </div>
+
+                <!-- Active Campaigns -->
+                <h2 class="mb-2">Available Campaigns</h2>
+                <div class="grid grid-3" id="campaignsGrid"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser || currentUser.role !== 'donor') {
+            window.location.href = 'index.html';
+        }
+
+        document.getElementById('userName').textContent = currentUser.first_name;
+
+        function loadDonorStats() {
+            document.getElementById('totalDonations').textContent = '12';
+            document.getElementById('livesSaved').textContent = '36';
+            document.getElementById('bloodType').textContent = 'O+';
+            document.getElementById('nextEligible').textContent = 'Now';
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        });
+
+        loadDonorStats();
+    </script>
+</body>
+
+</html>

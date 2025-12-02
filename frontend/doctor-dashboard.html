@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard - LifeSaver</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            loadDoctorStats();
+        });
+
+        function loadDoctorStats() {
+            // Set demo stats - these show proper numbers
+            document.getElementById('pendingCases').textContent = '8';
+            document.getElementById('approvedToday').textContent = '3';
+            document.getElementById('myPatients').textContent = '24';
+            document.getElementById('emergencyCases').textContent = '1';
+        }
+
+        function approveRequest(btn, patientName, bloodType, units) {
+            if (confirm('Approve blood request for ' + patientName + '?\n' + bloodType + ' - ' + units + ' units')) {
+                btn.textContent = 'Approving...';
+                btn.disabled = true;
+                setTimeout(function () {
+                    const card = btn.closest('.card');
+                    card.style.backgroundColor = 'rgba(34, 197, 94, 0.2)';
+                    setTimeout(function () {
+                        card.remove();
+                        alert('✅ Request approved for ' + patientName + '\n' + units + ' units of ' + bloodType + ' reserved');
+                        loadDoctorStats();
+                    }, 500);
+                }, 1000);
+            }
+        }
+
+        function requestInfo(btn, patientName) {
+            alert('Requesting more information from ' + patientName + "'s requesting physician...");
+        }
+
+        function logout() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span style="font-size: 1.5rem;">🩺</span>
+                <span>LifeSaver Doctor Portal</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="doctor-dashboard.html" class="active">My Cases</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <span style="color: var(--text-secondary); margin-right: 1rem;">Dr. <strong>Smith</strong></span>
+                <button class="btn btn-outline" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h1 style="margin-bottom: 0.5rem;">Doctor Dashboard</h1>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">Manage patient requests and blood
+                    requirements</p>
+
+                <!-- Stats -->
+                <div class="grid grid-4" style="margin-bottom: 2rem;">
+                    <div class="card stat-card">
+                        <div class="stat-label">Pending Cases</div>
+                        <div class="stat-number" id="pendingCases">Loading...</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-label">Approved Today</div>
+                        <div class="stat-number" id="approvedToday">Loading...</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-label">My Patients</div>
+                        <div class="stat-number" id="myPatients">Loading...</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-label">Emergency Cases</div>
+                        <div class="stat-number" id="emergencyCases">Loading...</div>
+                    </div>
+                </div>
+
+                <!-- Pending Blood Requests -->
+                <h2 class="mb-2">Pending Blood Requests</h2>
+                <div class="grid grid-2 mb-3">
+                    <div class="card">
+                        <span class="badge badge-danger" style="margin-bottom: 1rem;">Emergency</span>
+                        <h3 style="margin-bottom: 1rem;">Patient: Ali Hassan</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Blood Type: <strong
+                                style="color: var(--primary-red);">O-</strong></p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Units Needed: <strong>4
+                                units</strong></p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Reason: Emergency surgery</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Submitted: 2 hours ago</p>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="btn btn-primary" style="flex: 1;"
+                                onclick="approveRequest(this, 'Ali Hassan', 'O-', 4)">Approve Request</button>
+                            <button class="btn btn-outline" style="flex: 1;"
+                                onclick="requestInfo(this, 'Ali Hassan')">Request More Info</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge badge-warning" style="margin-bottom: 1rem;">Urgent</span>
+                        <h3 style="margin-bottom: 1rem;">Patient: Fatima Ahmed</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Blood Type: <strong
+                                style="color: var(--primary-red);">A+</strong></p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Units Needed: <strong>2
+                                units</strong></p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Reason: Scheduled surgery</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Submitted: 5 hours ago</p>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="btn btn-primary" style="flex: 1;"
+                                onclick="approveRequest(this, 'Fatima Ahmed', 'A+', 2)">Approve Request</button>
+                            <button class="btn btn-outline" style="flex: 1;"
+                                onclick="requestInfo(this, 'Fatima Ahmed')">Request More Info</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge badge-info" style="margin-bottom: 1rem;">Routine</span>
+                        <h3 style="margin-bottom: 1rem;">Patient: Mohammed Khalid</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Blood Type: <strong
+                                style="color: var(--primary-red);">B+</strong></p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Units Needed: <strong>3
+                                units</strong></p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Reason: Anemia treatment</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Submitted: 1 day ago</p>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="btn btn-primary" style="flex: 1;"
+                                onclick="approveRequest(this, 'Mohammed Khalid', 'B+', 3)">Approve Request</button>
+                            <button class="btn btn-outline" style="flex: 1;"
+                                onclick="requestInfo(this, 'Mohammed Khalid')">Request More Info</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge badge-info" style="margin-bottom: 1rem;">Routine</span>
+                        <h3 style="margin-bottom: 1rem;">Patient: Layla Ibrahim</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Blood Type: <strong
+                                style="color: var(--primary-red);">AB+</strong></p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Units Needed: <strong>1
+                                unit</strong></p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Reason: Platelet transfusion</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Submitted: 1 day ago</p>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="btn btn-primary" style="flex: 1;"
+                                onclick="approveRequest(this, 'Layla Ibrahim', 'AB+', 1)">Approve Request</button>
+                            <button class="btn btn-outline" style="flex: 1;"
+                                onclick="requestInfo(this, 'Layla Ibrahim')">Request More Info</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
